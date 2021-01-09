@@ -1,7 +1,13 @@
+require('./models/User')
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser')
+const authRouts = require('./routs/authRouts')
 
 const app = express();
+
+app.use(bodyParser.json())
+app.use(authRouts)
 
 const mongoUri = 'mongodb+srv://admin:admin@tracks-cluster.nbbzw.mongodb.net/<dbname>?retryWrites=true&w=majority';
 mongoose.connect(mongoUri, {
